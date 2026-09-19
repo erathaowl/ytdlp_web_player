@@ -2,6 +2,7 @@ dotenv
 Flask
 requests
 yt-dlp
+-r plugin-requirements.txt
 pillow
 psutil
 uvicorn

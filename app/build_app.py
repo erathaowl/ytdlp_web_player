@@ -34,6 +34,10 @@ importlib.reload(site)
 from PIL import Image
 
 
+plugin_spec = importlib.util.find_spec('yt_dlp_plugins')
+plugin_paths = list(plugin_spec.submodule_search_locations or []) if plugin_spec else []
+
+
 for file in os.listdir('../src'):
     print(os.path.abspath(os.path.join('../src', file)))
 
@@ -67,8 +71,15 @@ args = [
     "--add-binary", f"extension/extension.js{colon}static/",
     "--add-data", f"src/static{colon}static",
     "--add-data", f"src/templates{colon}templates",
+    # Analyze plugin imports and also copy their source files. yt-dlp discovers
+    # plugins from physical paths, while PyInstaller normally stores modules in
+    # its embedded archive.
+    "--collect-submodules", "yt_dlp_plugins",
     "src/main.py"
 ]
+
+for plugin_path in plugin_paths:
+    args.extend(["--add-data", f"{plugin_path}{colon}yt_dlp_plugins"])
 
 run_subprocess(args, cwd='..')
 

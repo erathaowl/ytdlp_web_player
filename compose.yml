@@ -4,6 +4,7 @@ services:
         image: matszwe02/ytdlp_web_player:stable
         # volumes:
         #     - ./src/cookies.txt:/app/cookies.txt
+        #     - ./yt-dlp-plugins:/root/.config/yt-dlp/plugins:ro
         restart: unless-stopped
         # env_file:
         #     - src/.env

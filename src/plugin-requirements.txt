@@ -1,0 +1,3 @@
+# yt-dlp plugins bundled with the application
+# Add future pip-installable plugins here so every distribution includes them.
+yt-dlp-threads

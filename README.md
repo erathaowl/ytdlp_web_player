@@ -23,6 +23,7 @@
 
 ## Features
 - **Daily auto update of yt-dlp to immediately support new yt-dlp codecs and sites**
+- Threads video support through the `yt-dlp-threads` plugin
 - everything you would expect a modern player to have
 - fast loading speed (most videos load in 3s)
 - livestream support
@@ -142,6 +143,17 @@ If you want to build this app:
 You can install the official unraid application:
 
 https://ca.unraid.net/apps/yt-dlp-web-player-1ueyzjo0lupqig
+
+
+## yt-dlp plugins
+
+[`yt-dlp-threads`](https://github.com/tribixbite/yt-dlp-threads) is installed by default and adds support for public video posts on `threads.com` and `threads.net`.
+
+Bundled plugins are listed in `src/plugin-requirements.txt`. To include another pip-installable yt-dlp plugin in local, Docker, and packaged builds, add it to that file and reinstall `src/requirements.txt` or rebuild the application.
+
+The standard yt-dlp plugin locations are also supported. For example, a Docker deployment can mount manual plugins at `/root/.config/yt-dlp/plugins`, and a portable server application can use a `yt-dlp-plugins` directory beside its CLI executable. Follow the [yt-dlp plugin directory structure](https://github.com/yt-dlp/yt-dlp#installing-plugins).
+
+yt-dlp imports all discovered plugins at startup. Only install plugins whose code you trust.
 
 
 ## Cookies
